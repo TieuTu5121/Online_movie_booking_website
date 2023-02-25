@@ -1,6 +1,6 @@
 package com.example.nedcinema;
 
-import com.example.nedcinema.models.Food;
+import com.example.nedcinema.entity.Food;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,11 +12,10 @@ public class NedCinemaApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(NedCinemaApplication.class, args);
-    }
 
-    private Food food = new Food("Bo bia","cha ngon",2000,"");
+    }
     @GetMapping("/")
     public String hello(){
-        return food.toString();}
-
+        return "hello";
+    }
 }

@@ -1,17 +1,38 @@
-package com.example.nedcinema.models;
+package com.example.nedcinema.entity;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "food")
 public class Food {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id")
     private int id;
+
+    @Column(name = "Name")
     private String name;
-    private String  description;
-    private int price;
+
+    @Column(name = "Description")
+    private String description;
+
+    @Column(name = "Price")
+    private double price;
+
+    @Column(name = "Photo")
     private String photo;
 
-    public Food(String name, String description, int price, String photo) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.photo = photo;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -30,11 +51,11 @@ public class Food {
         this.description = description;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -48,8 +69,9 @@ public class Food {
 
     @Override
     public String toString() {
-        return "food{" +
-                "name='" + name + '\'' +
+        return "Food{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", photo='" + photo + '\'' +

@@ -1,4 +1,4 @@
-package com.example.nedcinema.models;
+package com.example.nedcinema.entity;
 
 import java.util.Date;
 

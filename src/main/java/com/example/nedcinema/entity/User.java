@@ -1,7 +1,6 @@
-package com.example.nedcinema.models;
+package com.example.nedcinema.entity;
 
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.Objects;
 
 public class User {

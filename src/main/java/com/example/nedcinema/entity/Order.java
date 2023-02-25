@@ -1,7 +1,6 @@
-package com.example.nedcinema.models;
+package com.example.nedcinema.entity;
 
 import java.util.Date;
-import java.util.Stack;
 
 public class Order {
 
