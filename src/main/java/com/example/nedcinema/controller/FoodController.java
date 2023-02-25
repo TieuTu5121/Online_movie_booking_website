@@ -20,6 +20,7 @@ public class FoodController {
     public ResponseEntity<Food> getFoodById(@PathVariable int id) {
         Food food = foodService.getFoodById(id);
         if (food == null) {
+            System.out.println("Wrong id :" + id);
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(food);
@@ -40,6 +41,7 @@ public class FoodController {
     public ResponseEntity<String> deleteFood(@PathVariable int id) {
         boolean deleted = foodService.deleteFood(id);
         if (!deleted) {
+            System.out.println("Wrong id :" + id);
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body("Deleted food with id: " + id);
