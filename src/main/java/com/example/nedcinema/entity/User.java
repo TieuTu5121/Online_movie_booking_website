@@ -1,38 +1,59 @@
 package com.example.nedcinema.entity;
 
-import java.sql.Timestamp;
-import java.util.Objects;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.hibernate.annotations.CreationTimestamp;
+import org.apache.commons.lang3.RandomStringUtils;
+
+
+import java.sql.Timestamp;
+import java.util.UUID;
+
+
+@Entity
+@AllArgsConstructor
+@Table(name = "user")
 public class User {
 
-    private String userID;
-    private String  password;
+    @Id
+    private String userUID;
+
+    @Column(name = "Password")
+    private String password;
+
+    @Column(name = "DisplayName")
     private String displayName;
-    private String  mail;
-    private Timestamp  created;
 
-    public User(String userID, String password, String displayName, String mail, Timestamp created) {
-        this.userID = userID;
-        this.password = password;
+    @Column(name = "Email",unique = true,nullable = false)
+    private String email;
+
+    @CreationTimestamp
+    @Column(name = "Created",nullable = false)
+    private Timestamp created;
+
+
+    // Constructor
+    public User(){
+        this.userUID = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 10);
+
+    }
+    public User(String displayName, String password, String email) {
+        this.userUID = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 10);
         this.displayName = displayName;
-        this.mail = mail;
-        this.created = created;
+        this.password = DigestUtils.md5Hex(password);
+        this.email = email;
     }
 
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
+    // Getter and Setter methods...
 
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = DigestUtils.md5Hex(password);
     }
 
     public String getDisplayName() {
@@ -43,12 +64,12 @@ public class User {
         this.displayName = displayName;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Timestamp getCreated() {
@@ -57,29 +78,5 @@ public class User {
 
     public void setCreated(Timestamp created) {
         this.created = created;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(userID, user.userID) && Objects.equals(password, user.password) && Objects.equals(displayName, user.displayName) && Objects.equals(mail, user.mail) && Objects.equals(created, user.created);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(password);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userID='" + userID + '\'' +
-                ", password='" + password + '\'' +
-                ", displayName='" + displayName + '\'' +
-                ", mail='" + mail + '\'' +
-                ", created=" + created +
-                '}';
     }
 }

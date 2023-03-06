@@ -41,8 +41,7 @@ public class FoodController {
     public ResponseEntity<String> deleteFood(@PathVariable int id) {
         boolean deleted = foodService.deleteFood(id);
         if (!deleted) {
-            System.out.println("Wrong id :" + id);
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Food with id " + id + " not found");
         }
         return ResponseEntity.ok().body("Deleted food with id: " + id);
     }
