@@ -1,11 +1,24 @@
 package com.example.nedcinema.entity;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+
+@Entity
+@AllArgsConstructor
+@Table(name ="cinemas")
 public class Cinema {
-
+    @Id
+    @Column(name="_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(name="Name",nullable = false)
     private String  name;
-    private int seats;
 
+    @Column(name="Seats",nullable = false)
+    private int seats;
+    public Cinema(){
+
+    }
     public Cinema(String name, int seats) {
         this.name = name;
         this.seats = seats;
@@ -26,7 +39,6 @@ public class Cinema {
     public void setSeats(int seats) {
         this.seats = seats;
     }
-
     @Override
     public String toString() {
         return "Cinema{" +

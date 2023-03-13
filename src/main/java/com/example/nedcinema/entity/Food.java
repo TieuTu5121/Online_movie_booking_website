@@ -15,16 +15,16 @@ public class Food {
     @Column(name = "Id")
     private int id;
 
-    @Column(name = "Name")
+    @Column(name = "Name",nullable = false,unique = true)
     private String name;
 
-    @Column(name = "Description")
+    @Column(name = "Description",nullable = false)
     private String description;
 
-    @Column(name = "Price")
+    @Column(name = "Price",nullable = false)
     private double price;
 
-    @Column(name = "Photo")
+    @Column(name = "Photo",nullable = false)
     private String photo;
 
     public int getId() {
