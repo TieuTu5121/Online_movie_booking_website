@@ -1,18 +1,30 @@
 package com.example.nedcinema.entity;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="seatlist")
 public class SeatList {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id",nullable = false)
     private int id;
+    @Column(name = "SeatName",nullable = false,unique = true)
     private String seatName;
-    private String  type;
-    private int price;
-    private Cinema cinema;
+    @Column(name = "Type",nullable = false)
 
-    public SeatList(String seatName, String type, int price, Cinema cinema) {
+    private String  type;
+    @Column(name = "Price",nullable = false)
+    private int price;
+
+    public SeatList(){
+
+    }
+    public SeatList(int id, String seatName, String type, int price) {
+        this.id = id;
         this.seatName = seatName;
         this.type = type;
         this.price = price;
-        this.cinema = cinema;
     }
 
     public String getSeatName() {
@@ -39,22 +51,11 @@ public class SeatList {
         this.price = price;
     }
 
-    public Cinema getCinema() {
-        return cinema;
+    public int getId() {
+        return id;
     }
 
-    public void setCinema(Cinema cinema) {
-        this.cinema = cinema;
-    }
-
-    @Override
-    public String toString() {
-        return "SeatList{" +
-                "id=" + id +
-                ", seatName='" + seatName + '\'' +
-                ", type='" + type + '\'' +
-                ", price=" + price +
-                ", cinema=" + cinema +
-                '}';
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -1,6 +1,5 @@
 package com.example.nedcinema.entity;
 
-import com.example.nedcinema.entity.Cinema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -9,11 +8,10 @@ import java.sql.Timestamp;
 
 @Entity
 @AllArgsConstructor
-@Table(name ="movies")
+@Table(name ="movie")
 public class Movies {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "_id")
     private int id;
     @Column(name = "ma_phim",nullable = false)
     private String maphim;
@@ -40,21 +38,21 @@ public class Movies {
 
     @Column(name="poster",nullable = false)
     private String poster;
-    @Column(name = "banner",nullable = false)
+    @Column(name = "banner")
     private String banner;
     @Column(name = "trailer",nullable = false)
     private String trailer;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cinema", referencedColumnName = "cinema_id", nullable = false)
-    private Cinema cinema;
+    @JoinColumn(name = "cinemaID", referencedColumnName = "id", nullable = false)
+    private Cinemas cinema;
     @Column(name="createdAt",nullable = false)
     @CreationTimestamp
     private Timestamp createdAt;
-    @Column(name = "updateAt",nullable = false)
+    @Column(name = "updatedAt",nullable = false)
     @CreationTimestamp
     private Timestamp updateAt;
 
-    public Movies(String maphim, String title, String year, String rated, String released, String runtime, String geners, String directors, String actors, String plot, String language, String poster, String banner, String trailer,Cinema cinema, Timestamp createdAt, Timestamp updateAt) {
+    public Movies(String maphim, String title, String year, String rated, String released, String runtime, String geners, String directors, String actors, String plot, String language, String poster, String banner, String trailer, Cinemas cinema, Timestamp createdAt, Timestamp updateAt) {
         this.maphim = maphim;
         this.title = title;
         this.year = year;
@@ -188,11 +186,11 @@ public class Movies {
         this.trailer = trailer;
     }
 
-    public Cinema getCinema() {
+    public Cinemas getCinema() {
         return cinema;
     }
 
-    public void setCinema(Cinema cinema) {
+    public void setCinema(Cinemas cinema) {
         this.cinema = cinema;
     }
 

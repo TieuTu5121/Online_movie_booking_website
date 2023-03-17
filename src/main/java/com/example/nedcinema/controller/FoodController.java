@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/foods")
+@RequestMapping("/api/v1/foods")
 public class FoodController {
 
     @Autowired
